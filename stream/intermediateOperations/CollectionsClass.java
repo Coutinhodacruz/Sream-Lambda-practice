@@ -1,31 +1,29 @@
 package chapter17.stream.intermediateOperations;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.function.BinaryOperator;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
-public class Collection {
+public class CollectionsClass {
     public static void main(String[] args) {
-        List<String> words = List.of(
-                "Java", "Python",
-                "C++",  "Go",
-                "Rust"
-        );
+        List<String> words = new ArrayList<>();
+        words.add("Java");
+        words.add("Python");
+        words.add("C++");
+        words.add("Rust");
+
+        Collections.sort(words);
+
+        int index = Collections.binarySearch(words, "python");
+        System.out.println("python found at index:" + index);
+
+        String maximum = Collections.max(words);
+        System.out.println(maximum);
+
+        System.out.println(words);
 
 
-        Function<String, String> keyMapper = (word)-> word;
 
-        Function<String, Integer> valueMapper = (word)-> word.length();
-
-        BinaryOperator<Integer> mergeFunction = (word, duplicate)-> word+duplicate;
-
-         Map<String, Integer> languages=words.stream()
-                .filter((word) ->word.length()>2)
-                .collect(Collectors.toMap(keyMapper, valueMapper, mergeFunction));
-
-        System.out.println(languages);
     }
 
 }
